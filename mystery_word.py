@@ -1,5 +1,12 @@
+# import random
+# from pathlib import Path
+# p = Path('test-word.txt')
+
+
 def play_game():
-    pass
+    with open(p) as reader:
+        test_word = reader.read()
+        print(test_word)
 
 
 if __name__ == "__main__":
