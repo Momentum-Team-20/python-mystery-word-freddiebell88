@@ -21,13 +21,24 @@ def play_game(file):
         print(letters)
         blank_letters = [letter.replace(letter, '_') for letter in letters]
         print(blank_letters)
-        game_board = "".join(blank_letters)
-        print(game_board)
+        # game_board = "".join(blank_letters)
+        # print(game_board)
+        guessed_letters = []
+        wrong_guesses = 8
         guess = input("Guess a letter: ")
         print(guess)
-        replace_letter()
-        
+        guessed_letters.append(guess)
+        if guess in answer:
+            print("correct!")
+            for index in range(len(answer)):
+                if guess == answer[index]:
+                    blank_letters[index] = guess
+                    print(blank_letters)
 
+        else:
+            print("incorrect!")
+
+        # replace_letter()
         # if guess in letters:
         #     print(letter)
         # else:
