@@ -1,6 +1,6 @@
 TASKS
-- computer selects a word at random
-- open and read files
+- ✅computer selects a word at random
+- ✅open and read files
 - display the word with underscores or the correct letter guesses
 - tell the user how many letters
 - ask the user to guess a letter
