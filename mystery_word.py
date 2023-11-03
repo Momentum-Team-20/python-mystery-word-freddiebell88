@@ -1,11 +1,17 @@
 import random
 
 
-# def validate_guess(guess, guessed_letters):
-#     return (
-#         len(guess) >= 1
-#         # and guess in guessed_letters
-#     )
+def validate_guess(guess, guessed_letters):
+    if len(guess) != 1:
+        print('Invalid guess. Try agian')
+        return False
+    elif guessed_letters:
+        if guess in guessed_letters:
+            print(f'You have already guessed {guess}.')
+            return False
+    else:
+        return True
+
 
 def replace_letter(str):
     for character in str:
@@ -28,31 +34,26 @@ def play_game(file):
         wrong_guesses = 0
         while wrong_guesses < guess_limit:
             guess = input("Guess a letter: ").lower()
-            guessed_letters.append(guess)
-            # print(guessed_letters)
-            # if guessed_letters:  
-            # for item in guessed_letters:
-            #         if guess == guessed_letters[item]:
-            #             print(f'You have already guessed {guess}.')
-            if len(guess) >= 1:
-                print("Invalid guess. Try again.")
-            # write code to not add this guess to word count
-            if guess in answer:
-                print("correct!")
-                for index in range(len(answer)):
-                    if guess == answer[index]:
-                        game_board[index] = guess
-                        print(game_board)
+            if validate_guess(guess, guessed_letters):
+                guessed_letters.append(guess)
+                print(guessed_letters)
+                if guess in answer:
+                    print("correct!")
+                    for index in range(len(answer)):
+                        if guess == answer[index]:
+                            game_board[index] = guess
+                            print(game_board)
+                else:
+                    print("incorrect!")
+                    wrong_guesses += 1
+                    print(f'You have used {wrong_guesses} of 8 guesses.')
+                    if wrong_guesses == guess_limit:
+                        print(f'You ran out of guesses. The word was {answer}.')
+                if "_" not in game_board:
+                    print("VICTORY!")
+                    break
             else:
-                print("incorrect!")
-                wrong_guesses += 1
-                print(f'You have used {wrong_guesses} of 8 guesses.')
-                if wrong_guesses == guess_limit:
-                    print(f'You ran out of guesses. The word was {answer}.')
-            if "_" not in game_board:
-                print("VICTORY!")
-                break
-        
+                print("Invalid guess. Try again.")     
     play_again = input("Do you want to play again? y/n: ").lower()
     if play_again == 'y':
         play_game(file)

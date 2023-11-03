@@ -4,13 +4,13 @@ TASKS
 - ✅display the word with underscores or the correct letter guesses
 - ✅tell the user how many letters
 - ✅ask the user to guess a letter
-- tell them input invalid if it is more than one letter -> only allow single character guesses 
+- ✅tell them input invalid if it is more than one letter -> only allow single character guesses 
 - evaluate where the guess is correct 
     - ✅if correct -> add letter to display
     - if letter already guessed -> do not take away from guess count and notify user already guessed
     - ✅if incorrect -> tell user guess is wrong and subtract 1 from guess count
 - game ends
-    - guessed correctly
-    - user runs out of guesses
-        - reveal the answer
+    - ✅guessed correctly
+    - ✅user runs out of guesses
+        - ✅reveal the answer
 - ✅ ask user to play again
