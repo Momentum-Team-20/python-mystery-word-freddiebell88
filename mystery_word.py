@@ -21,6 +21,7 @@ def play_game(file):
         print(answer)
         letters = [letter for letter in answer]
         game_board = [letter.replace(letter, '_') for letter in letters]
+        print(f'Your word has {len(answer)} letters.')
         print(game_board)
         guessed_letters = []
         guess_limit = 8
@@ -29,8 +30,7 @@ def play_game(file):
             guess = input("Guess a letter: ").lower()
             guessed_letters.append(guess)
             # print(guessed_letters)
-            # if guessed_letters:
-            #     f
+            # if guessed_letters:  
             # for item in guessed_letters:
             #         if guess == guessed_letters[item]:
             #             print(f'You have already guessed {guess}.')
