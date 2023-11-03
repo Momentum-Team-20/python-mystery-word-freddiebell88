@@ -47,9 +47,12 @@ def play_game(file):
                 print("incorrect!")
                 wrong_guesses += 1
                 print(f'You have used {wrong_guesses} of 8 guesses.')
+                if wrong_guesses == guess_limit:
+                    print(f'You ran out of guesses. The word was {answer}.')
             if "_" not in game_board:
                 print("VICTORY!")
                 break
+        
     play_again = input("Do you want to play again? y/n: ").lower()
     if play_again == 'y':
         play_game(file)
