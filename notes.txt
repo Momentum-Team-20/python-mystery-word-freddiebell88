@@ -2,7 +2,7 @@ TASKS
 - ✅computer selects a word at random
 - ✅open and read files
 - ✅display the word with underscores or the correct letter guesses
-- tell the user how many letters
+- ✅tell the user how many letters
 - ✅ask the user to guess a letter
 - tell them input invalid if it is more than one letter -> only allow single character guesses 
 - evaluate where the guess is correct 
@@ -13,4 +13,4 @@ TASKS
     - guessed correctly
     - user runs out of guesses
         - reveal the answer
-- ask user to play again
+- ✅ ask user to play again

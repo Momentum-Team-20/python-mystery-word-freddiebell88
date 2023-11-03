@@ -50,7 +50,13 @@ def play_game(file):
             if "_" not in game_board:
                 print("VICTORY!")
                 break
-
+    play_again = input("Do you want to play again? y/n: ").lower()
+    if play_again == 'y':
+        play_game(file)
+    elif play_again == 'n':
+        exit()
+    else:
+        print("Invalid input.")
 
 if __name__ == "__main__":
     import argparse
