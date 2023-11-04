@@ -3,13 +3,13 @@ file = 'words.txt'
 
 
 def validate_guess(guess, guessed_letters):
-    if len(guess) != 1:
-        print('Invalid guess. Try agian')
-        return False
-    elif guessed_letters:
+    while len(guess) != 1:
+        guess = input('Invalid guess. Try again: ')
+        return guess
+    while guessed_letters:
         if guess in guessed_letters:
-            print(f'You have already guessed {guess}.')
-            return False
+            guess = input(f'You have already guessed {guess}. Guess again: ')
+            return guess
     else:
         return True
 
@@ -18,6 +18,7 @@ def replace_letter(str):
     for character in str:
         if character in str:
             str = str.replace('_', character)
+
 
 def build_game_board(answer, guessed_letters):
     correct_letters = []
@@ -47,6 +48,7 @@ def play_game(file):
             if validate_guess(guess, guessed_letters):
                 guessed_letters.append(guess)
                 print(guessed_letters)
+
             if guess in answer:
                 print("correct!")
                 for index in range(len(answer)):
@@ -59,9 +61,7 @@ def play_game(file):
                 wrong_guesses += 1
                 print(f'You have used {wrong_guesses} of 8 guesses.')
                 if wrong_guesses == guess_limit:
-                    print(f'You ran out of guesses. The word was {answer}.')
-            # else:
-            #     print("Invalid guess. Try again.")     
+                    print(f'You ran out of guesses. The word was {answer}.')    
             if "_" not in game_board:
                 print("VICTORY!")
                 break
