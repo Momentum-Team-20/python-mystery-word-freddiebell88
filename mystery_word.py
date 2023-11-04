@@ -1,4 +1,5 @@
 import random
+file = 'words.txt'
 
 
 def validate_guess(guess, guessed_letters):
@@ -17,6 +18,15 @@ def replace_letter(str):
     for character in str:
         if character in str:
             str = str.replace('_', character)
+
+def build_game_board(answer, guessed_letters):
+    correct_letters = []
+    for letter in answer:
+        if letter in guessed_letters:
+            correct_letters.append(letter)
+        else:
+            correct_letters.append("_")
+    print(" ".join(correct_letters))
 
 
 def play_game(file):
@@ -37,23 +47,24 @@ def play_game(file):
             if validate_guess(guess, guessed_letters):
                 guessed_letters.append(guess)
                 print(guessed_letters)
-                if guess in answer:
-                    print("correct!")
-                    for index in range(len(answer)):
-                        if guess == answer[index]:
-                            game_board[index] = guess
-                            print(game_board)
-                else:
-                    print("incorrect!")
-                    wrong_guesses += 1
-                    print(f'You have used {wrong_guesses} of 8 guesses.')
-                    if wrong_guesses == guess_limit:
-                        print(f'You ran out of guesses. The word was {answer}.')
-                if "_" not in game_board:
-                    print("VICTORY!")
-                    break
+            if guess in answer:
+                print("correct!")
+                for index in range(len(answer)):
+                    if guess == answer[index]:
+                        game_board[index] = guess
+                        # print(game_board)
+                        build_game_board(answer, guessed_letters)
             else:
-                print("Invalid guess. Try again.")     
+                print("incorrect!")
+                wrong_guesses += 1
+                print(f'You have used {wrong_guesses} of 8 guesses.')
+                if wrong_guesses == guess_limit:
+                    print(f'You ran out of guesses. The word was {answer}.')
+            # else:
+            #     print("Invalid guess. Try again.")     
+            if "_" not in game_board:
+                print("VICTORY!")
+                break
     play_again = input("Do you want to play again? y/n: ").lower()
     if play_again == 'y':
         play_game(file)
@@ -62,18 +73,19 @@ def play_game(file):
     else:
         print("Invalid input.")
 
+
 if __name__ == "__main__":
-    import argparse
-    from pathlib import Path
+    play_game(file)
+    # import argparse
+    # from pathlib import Path
+    # parser = argparse.ArgumentParser(
+    #     description='Guess the word.')
+    # parser.add_argument('file', help='file to read')
+    # args = parser.parse_args()
 
-    parser = argparse.ArgumentParser(
-        description='Guess the word.')
-    parser.add_argument('file', help='file to read')
-    args = parser.parse_args()
-
-    file = Path(args.file)
-    if file.is_file():
-        play_game(file)
-    else:
-        print(f"{file} does not exist!")
-        exit(1)
+    # file = Path(args.file)
+    # if file.is_file():
+    #     play_game(file)
+    # else:
+    #     print(f"{file} does not exist!")
+    #     exit(1)
