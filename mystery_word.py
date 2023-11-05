@@ -3,15 +3,39 @@ file = 'words.txt'
 
 
 def validate_guess(guess, guessed_letters):
-    while len(guess) != 1:
+    if len(guess) != 1:
         guess = input('Invalid guess. Try again: ')
-        return guess
-    while guessed_letters:
+        return guess.lower()
+    elif guessed_letters:
         if guess in guessed_letters:
-            guess = input(f'You have already guessed {guess}. Guess again: ')
-            return guess
-    else:
-        return True
+            guess = input(f'You have already guessed {guess}. Try again: ')
+            # after this line it is saying any guess is incorrect
+            return guess.lower()
+
+    # else:
+    #     return True
+# def validate_guess():
+#     guess = input("Guess a letter: ").lower()
+#     guessed_letters = []
+#     if len(guess) == 1:
+#         return guess
+#     elif guess not in guessed_letters:
+#         guessed_letters.append(guess)
+#         return guess
+#     elif guess in guessed_letters:
+#         guess_again = input("Already guess. Guess again: ")
+#         return guess_again
+#     else:
+#         invalid_guess = input("Invalid guess. Please guess again: ")
+#         return invalid_guess
+    # while len(guess) != 1:
+    #     guess = input('Invalid guess. Try again: ')
+
+    # while guessed_letters:
+    #     if guess in guessed_letters:
+    #         guess = input(f'You have already guessed {guess}. Guess again: ')
+
+    # return guess.lower()
 
 
 def replace_letter(str):
@@ -45,10 +69,9 @@ def play_game(file):
         wrong_guesses = 0
         while wrong_guesses < guess_limit:
             guess = input("Guess a letter: ").lower()
-            if validate_guess(guess, guessed_letters):
-                guessed_letters.append(guess)
-                print(guessed_letters)
-
+            validate_guess(guess, guessed_letters)
+            guessed_letters.append(guess)
+            print(guessed_letters)
             if guess in answer:
                 print("correct!")
                 for index in range(len(answer)):
