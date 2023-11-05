@@ -2,15 +2,17 @@ import random
 file = 'words.txt'
 
 
-def validate_guess(guess, guessed_letters):
-    if len(guess) != 1:
-        guess = input('Invalid guess. Try again: ')
-        return guess.lower()
-    elif guessed_letters:
-        if guess in guessed_letters:
-            guess = input(f'You have already guessed {guess}. Try again: ')
-            # after this line it is saying any guess is incorrect
-            return guess.lower()
+def validate_guess(guess_copy, guessed_letters):
+    guess_is_valid = False
+    while not guess_is_valid:
+        if len(guess_copy) != 1 or not guess_copy.isalpha():
+            guess_copy = input('Invalid guess. Try again: ')
+        elif guess_copy in guessed_letters:
+            # if guess in guessed_letters:
+            guess_copy = input(f'You have already guessed {guess_copy}. Try again: ')
+        else:
+            guess_is_valid = True
+    return guess_copy.lower()
 
     # else:
     #     return True
@@ -69,7 +71,7 @@ def play_game(file):
         wrong_guesses = 0
         while wrong_guesses < guess_limit:
             guess = input("Guess a letter: ").lower()
-            validate_guess(guess, guessed_letters)
+            guess = validate_guess(guess, guessed_letters)
             guessed_letters.append(guess)
             print(guessed_letters)
             if guess in answer:
@@ -77,8 +79,8 @@ def play_game(file):
                 for index in range(len(answer)):
                     if guess == answer[index]:
                         game_board[index] = guess
-                        # print(game_board)
-                        build_game_board(answer, guessed_letters)
+                build_game_board(answer, guessed_letters)
+
             else:
                 print("incorrect!")
                 wrong_guesses += 1
