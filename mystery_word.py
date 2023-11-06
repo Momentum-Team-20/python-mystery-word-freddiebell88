@@ -8,36 +8,10 @@ def validate_guess(guess_copy, guessed_letters):
         if len(guess_copy) != 1 or not guess_copy.isalpha():
             guess_copy = input('Invalid guess. Try again: ')
         elif guess_copy in guessed_letters:
-            # if guess in guessed_letters:
             guess_copy = input(f'You have already guessed {guess_copy}. Try again: ')
         else:
             guess_is_valid = True
     return guess_copy.lower()
-
-    # else:
-    #     return True
-# def validate_guess():
-#     guess = input("Guess a letter: ").lower()
-#     guessed_letters = []
-#     if len(guess) == 1:
-#         return guess
-#     elif guess not in guessed_letters:
-#         guessed_letters.append(guess)
-#         return guess
-#     elif guess in guessed_letters:
-#         guess_again = input("Already guess. Guess again: ")
-#         return guess_again
-#     else:
-#         invalid_guess = input("Invalid guess. Please guess again: ")
-#         return invalid_guess
-    # while len(guess) != 1:
-    #     guess = input('Invalid guess. Try again: ')
-
-    # while guessed_letters:
-    #     if guess in guessed_letters:
-    #         guess = input(f'You have already guessed {guess}. Guess again: ')
-
-    # return guess.lower()
 
 
 def replace_letter(str):
@@ -61,11 +35,9 @@ def play_game(file):
         text = reader.read()
         word_list = text.split()
         answer = random.choice(word_list)
-        print(answer)
         letters = [letter for letter in answer]
         game_board = [letter.replace(letter, '_') for letter in letters]
         print(f'Your word has {len(answer)} letters.')
-        print(game_board)
         guessed_letters = []
         guess_limit = 8
         wrong_guesses = 0
@@ -73,7 +45,6 @@ def play_game(file):
             guess = input("Guess a letter: ").lower()
             guess = validate_guess(guess, guessed_letters)
             guessed_letters.append(guess)
-            print(guessed_letters)
             if guess in answer:
                 print("correct!")
                 for index in range(len(answer)):
@@ -101,16 +72,3 @@ def play_game(file):
 
 if __name__ == "__main__":
     play_game(file)
-    # import argparse
-    # from pathlib import Path
-    # parser = argparse.ArgumentParser(
-    #     description='Guess the word.')
-    # parser.add_argument('file', help='file to read')
-    # args = parser.parse_args()
-
-    # file = Path(args.file)
-    # if file.is_file():
-    #     play_game(file)
-    # else:
-    #     print(f"{file} does not exist!")
-    #     exit(1)
